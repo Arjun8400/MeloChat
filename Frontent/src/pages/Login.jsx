@@ -10,35 +10,37 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-  const[email, setEmail] = useState("")
-  const[password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   // use redux se se data find
-  const dispatch = useDispatch()
-  
-  
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     try {
-    e.preventDefault();
-    setLoading(true);
-    const result = await axios.post(`${API_URL}/login`, {
-     email, password
-    }, { withCredentials: true })
-      dispatch(setUserData(result.data))
-      setPassword("")
-      setEmail("")
+      e.preventDefault();
+      setLoading(true);
+      const result = await axios.post(
+        `${API_URL}/login`,
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+      dispatch(setUserData(result.data));
+      setPassword("");
+      setEmail("");
       setLoading(false);
       setError("");
-      navigate("/")
+      navigate("/");
     } catch (error) {
-     setLoading(false);
-     setError(error?.response?.data?.message);
+      setLoading(false);
+      setError(error?.response?.data?.message);
     }
-  }
-
+  };
 
   return (
     <div className="w-full h-screen flex justify-center items-center bg-slate-300">
@@ -50,14 +52,18 @@ const Login = () => {
           <input
             type="email"
             placeholder="Email"
-            onChange={(e)=>{setEmail(e.target.value)}}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             value={email}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-[#087df1]"
           />
           <div className=" w-full border border-gray-300 rounded-lg overflow-hidden focus-within:border-[#087df1] relative">
             <input
               type={showPassword ? "text" : "password"}
-              onChange={(e)=>{setPassword(e.target.value)}}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               value={password}
               placeholder="Password"
               className="w-full p-3 focus:outline-none focus:border-[#087df1]"
@@ -72,7 +78,8 @@ const Login = () => {
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           <button
             type="submit"
-            className="w-full p-3 bg-[#087df1] text-white rounded-lg hover:bg-[#065bb5] transition-colors" disabled={loading}
+            className="w-full p-3 bg-[#087df1] text-white rounded-lg hover:bg-[#065bb5] transition-colors"
+            disabled={loading}
           >
             {loading ? "Loading..." : "Login"}
           </button>

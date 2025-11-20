@@ -17,8 +17,6 @@ const Signup = () => {
 
   // !redux se
   const dispatch = useDispatch();
-  const {userData} = useSelector(state=>state.user);
-  console.log(userData)
 
   // ! api call form submit per
   const handleSubmit = async (e) => {
