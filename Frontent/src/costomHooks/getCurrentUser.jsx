@@ -10,7 +10,7 @@ export const getCurrentUser = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const result = await axios.get(`${API_URL}/current`, {
+        const result = await axios.get(`${API_URL}/user/current`, {
           withCredentials: true,
         });
         dispatch(setUserData(result.data));

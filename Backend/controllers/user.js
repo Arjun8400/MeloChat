@@ -46,8 +46,8 @@ const signUpContoller = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "None", 
+      secure: false,
+      sameSite: "Strict", 
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
@@ -79,8 +79,8 @@ const loginController = async (req, res) => {
     const token = genToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "None",
+      secure: false,
+      sameSite: "Strict",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
     return res.status(200).json({ user});

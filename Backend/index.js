@@ -20,7 +20,7 @@ app.use(e.json())
 app.use(cookieParser())
 
 app.use('/api', authRoutes)
-app.use('/api', userRouter)
+app.use('/api/user', userRouter)
 
 connectDB()
 app.listen(port, ()=>{
