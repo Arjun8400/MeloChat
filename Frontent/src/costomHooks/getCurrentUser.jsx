@@ -19,5 +19,5 @@ export const getCurrentUser = () => {
       }
     };
     fetchUser();
-  }, [userData]);
+  }, []);
 };

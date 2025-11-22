@@ -11,7 +11,7 @@ const signUpContoller = async (req, res) => {
     // !2. Check if all required fields are present
     if (!userName || !email || !password) {
       return res.status(400).json({ message: "All fields (userName, email, password) are required." });
-    }    
+    }
     //! 3. Password length check
     if (password.length < 6) {
       return res
@@ -47,21 +47,21 @@ const signUpContoller = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
-      sameSite: "Strict", 
+      sameSite: "Strict",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     return res
       .status(201)
       .json({ user });
-      
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error during sign up." }); 
+    res.status(500).json({ message: "Internal server error during sign up." });
   }
 };
 
-// ! Login User 
+// ! Login User
 const loginController = async (req, res) => {
   try {
     const { email, password } = req.body;

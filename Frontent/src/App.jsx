@@ -1,17 +1,23 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
 import { getCurrentUser } from './costomHooks/getCurrentUser'
+import { useSelector } from 'react-redux'
+import Profile from './pages/Profile'
+
+
 
 const App = () => {
   getCurrentUser()
+  const {userData}= useSelector(state=>state.user)
   return (
     <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={!userData ? <Login/> : <Navigate to="/" />} />
+      <Route path="/signup" element={!userData ? <Signup/> : <Navigate to="/profile" />} />
+      <Route path='/' element={userData ? <Home/> : <Navigate to="/login" />} />
+      <Route  path="/profile" element={userData ? <Profile/> : <Navigate to="/signup" />}/> 
     </Routes>
   )
 }

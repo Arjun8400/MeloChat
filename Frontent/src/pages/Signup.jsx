@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../main.jsx";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { setUserData } from "../redux/userSlice.js";
 
 const Signup = () => {
@@ -24,7 +24,7 @@ const Signup = () => {
       e.preventDefault();
       setLoading(true);
       const result = await axios.post(
-        `${API_URL}/create`,
+        `${API_URL}/auth/signup`,
         {
           userName,
           email,

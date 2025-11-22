@@ -8,12 +8,11 @@ import userRouter from "./routes/user.routes.js";
 
 dotenv.config()
 
-
 const app = e()
 const port = process.env.PORT || 5001
 app.use(cors({
     origin:"http://localhost:5173",
-    credentials:true
+    credentials:true,
 }))
 
 app.use(e.json())

@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../main";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { setUserData } from "../redux/userSlice";
 
 const Login = () => {
@@ -23,7 +23,7 @@ const Login = () => {
       e.preventDefault();
       setLoading(true);
       const result = await axios.post(
-        `${API_URL}/login`,
+        `${API_URL}/auth/login`,
         {
           email,
           password,
@@ -35,7 +35,7 @@ const Login = () => {
       setEmail("");
       setLoading(false);
       setError("");
-      navigate("/");
+      // navigate("/");
     } catch (error) {
       setLoading(false);
       setError(error?.response?.data?.message);
