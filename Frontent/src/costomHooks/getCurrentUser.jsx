@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
-import { API_URL } from "../main";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/userSlice";
+import { API_URL } from "../main";
 
-export const getCurrentUser = () => {
+export const useCurrentUser = () => {
   const dispatch = useDispatch();
-  const { userData } = useSelector((state) => state.user);
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -15,9 +15,10 @@ export const getCurrentUser = () => {
         });
         dispatch(setUserData(result.data));
       } catch (error) {
-        console.log(error);
+        console.log("Current user fetch failed:", error.response?.data || error);
       }
     };
+
     fetchUser();
   }, []);
 };

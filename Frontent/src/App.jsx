@@ -3,14 +3,14 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
-import { getCurrentUser } from './costomHooks/getCurrentUser'
+import { useCurrentUser } from './costomHooks/getCurrentUser'
 import { useSelector } from 'react-redux'
 import Profile from './pages/Profile'
 
 
 
 const App = () => {
-  getCurrentUser()
+  useCurrentUser()
   const {userData}= useSelector(state=>state.user)
   return (
     <Routes>
